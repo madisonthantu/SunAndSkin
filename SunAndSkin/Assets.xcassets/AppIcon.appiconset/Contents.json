@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "custom.sun.max.circle.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

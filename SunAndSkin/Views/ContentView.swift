@@ -9,19 +9,10 @@
 import SwiftUI
 
 struct ContentView: View {
-//    var body: some View {
-//        ZStack {
-//            LinearGradient(
-//                gradient: Gradient(
-//                    colors: [.pink, .white]
-//                ), startPoint: .topLeading, endPoint: .bottomTrailing)
-//            .edgesIgnoringSafeArea(.all)
-//            VStack {
-//                Text("Sun & Skin")
-//            }
-//        }
-//    }
+//    @StateObject var locationManager = LocationManager()
+    @EnvironmentObject var locationManager: LocationManager
     @State private var openingPage = true
+    let date = Date()
     var body: some View {
         if openingPage {
             VStack {
@@ -32,7 +23,7 @@ struct ContentView: View {
                     Image("skincare").resizable()
                         .frame(width: 50.0, height: 50.0)
                         .offset(x: -15.0, y: 10.0)
-                }
+                }.offset(y: -20)
                 Text("Sun & Skin")
                     .multilineTextAlignment(.center)
                     .padding()
@@ -43,7 +34,7 @@ struct ContentView: View {
                         .weight(.heavy)
                     )
                     .foregroundColor(.white)
-                    .offset(y: -20)
+                    .offset(y: -40)
                 Button("Click to continue") {
                     withAnimation {
                         openingPage.toggle()
@@ -58,7 +49,23 @@ struct ContentView: View {
                                 ), startPoint: .trailing, endPoint: .bottomTrailing)
                             .edgesIgnoringSafeArea(.all))
         } else {
-//            MainPageView()
+            VStack {
+                    WelcomeView()
+                            .environmentObject(locationManager)
+            }
+            .background(Color(hue: 0.656, saturation: 0.787, brightness: 0.354))
+            .preferredColorScheme(.dark)
+            if let location = locationManager.location {
+                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
+            }
+            else {
+                    if locationManager.isLoading {
+                            ProgressView()
+                    } else {
+                            WelcomeView()
+                                    .environmentObject(locationManager)
+                    }
+            }
         }
     }
 }

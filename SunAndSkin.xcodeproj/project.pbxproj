@@ -16,6 +16,8 @@
 		19A9851C2BCD9364002827CE /* BunnyFlowersShadow.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19A985162BCD9364002827CE /* BunnyFlowersShadow.ttf */; };
 		19A9851D2BCD9364002827CE /* Chicago.otf in Resources */ = {isa = PBXBuildFile; fileRef = 19A985172BCD9364002827CE /* Chicago.otf */; };
 		19A9851E2BCD9364002827CE /* Pacifico.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 19A985182BCD9364002827CE /* Pacifico.ttf */; };
+		19A985232BCDA310002827CE /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A985222BCDA310002827CE /* LocationManager.swift */; };
+		19A985262BCDA620002827CE /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A985252BCDA620002827CE /* WelcomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		19A985172BCD9364002827CE /* Chicago.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Chicago.otf; sourceTree = "<group>"; };
 		19A985182BCD9364002827CE /* Pacifico.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pacifico.ttf; sourceTree = "<group>"; };
 		19A985202BCD97A7002827CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		19A985222BCDA310002827CE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		19A985252BCDA620002827CE /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +66,10 @@
 		19A985052BCD8EBC002827CE /* SunAndSkin */ = {
 			isa = PBXGroup;
 			children = (
+				19A985242BCDA574002827CE /* Views */,
+				19A985212BCDA2FF002827CE /* Managers */,
 				19A985202BCD97A7002827CE /* Info.plist */,
 				19A985062BCD8EBC002827CE /* SunAndSkinApp.swift */,
-				19A985082BCD8EBC002827CE /* ContentView.swift */,
 				19A985192BCD9364002827CE /* fonts */,
 				19A9850A2BCD8EBE002827CE /* Assets.xcassets */,
 				19A9850C2BCD8EBE002827CE /* Preview Content */,
@@ -90,6 +95,23 @@
 				19A985182BCD9364002827CE /* Pacifico.ttf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		19A985212BCDA2FF002827CE /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				19A985222BCDA310002827CE /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		19A985242BCDA574002827CE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19A985082BCD8EBC002827CE /* ContentView.swift */,
+				19A985252BCDA620002827CE /* WelcomeView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +191,8 @@
 			files = (
 				19A985092BCD8EBC002827CE /* ContentView.swift in Sources */,
 				19A985072BCD8EBC002827CE /* SunAndSkinApp.swift in Sources */,
+				19A985232BCDA310002827CE /* LocationManager.swift in Sources */,
+				19A985262BCDA620002827CE /* WelcomeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
