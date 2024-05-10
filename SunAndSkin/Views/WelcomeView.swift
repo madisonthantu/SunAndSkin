@@ -13,8 +13,21 @@ struct WelcomeView: View {
 //    @EnvironmentObject var locationManager: LocationManager
     @StateObject var locationManager = LocationManager()
     @State private var firstOpen = true
+    @State private var currDate = [
+        "dayOfWeek": Date.now.formatted(Date.FormatStyle().weekday(.abbreviated)),
+        "date": Date.now.formatted(Date.FormatStyle().day().month().year())
+    ]
     var body: some View {
-        VStack {
+        VStack 
+        {
+//            Text("HELOOOOO")
+//                .borderedCaption()
+            Text("Chelsea")
+                .header()
+            Text("\(currDate["dayOfWeek"] ?? "") \(currDate["date"] ?? "")")
+                .padding([.top], 50)
+            Text("\(Date.now.formatted(Date.FormatStyle().hour().minute()))")
+            Spacer()
             ZStack {
                 Image("sun").resizable()
                     .frame(width: 50.0, height: 50.0)
@@ -34,39 +47,31 @@ struct WelcomeView: View {
                 )
                 .foregroundColor(.white)
                 .offset(y: -40)
-            if firstOpen {
+            if let location = locationManager.location {
+                Text("Your coordinates are: \(location.longitude), \(location.latitude)")
+//                Text(currDate["dayOfWeek"] ?? "")
                 Button("Click to continue") {
                     withAnimation {
                         firstOpen.toggle()
                     }
                 }
-                .foregroundColor(Color.white)
+            }
+            else if locationManager.isLoading {
+                Text("Loading ...")
+                ProgressView()
             }
             else {
-                if let location = locationManager.location {
-                    Text("Your coordinates are: \(location.longitude), \(location.latitude)")
+                LocationButton(.shareCurrentLocation) {
+                        locationManager.requestLocation()
                 }
-                else {
-                    LocationButton(.shareCurrentLocation) {
-                            locationManager.requestLocation()
-                    }
-                    .cornerRadius(30)
-                    .symbolVariant(.fill)
-                    .foregroundColor(.white)
-                    .padding()
-                    if locationManager.isLoading {
-                        Text("Loading location ...")
-                        ProgressView()
-                    }
-                }
+                .cornerRadius(30)
+                .symbolVariant(.fill)
+                .foregroundColor(.white)
+                .padding()
             }
+            Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(LinearGradient(
-            gradient: Gradient(
-                colors: [.pink, .white]
-            ), startPoint: .trailing, endPoint: .bottomTrailing)
-        .edgesIgnoringSafeArea(.all))
+        .baseView()
     }
 }
 

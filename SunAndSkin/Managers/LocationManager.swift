@@ -9,19 +9,21 @@ import Foundation
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
-    let manager = CLLocationManager()
+    private let locationManager = CLLocationManager()
 
     @Published var location: CLLocationCoordinate2D?
     @Published var isLoading = false
     
     override init() {
         super.init()
-        manager.delegate = self
+        locationManager.delegate = self
+        requestLocation()
     }
 
     func requestLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.requestLocation()
         isLoading = true
-        manager.requestLocation()
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
